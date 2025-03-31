@@ -15,7 +15,7 @@ This project will also require proper evaluation, so we can interpret the result
 the success and/or failures of the methods. All of these techniques have been introduced in class 
 and will be applied during this project.
 
-See the Final Project Report in the ```report``` folder for the full project analysis.
+See the [Final Project Report](https://github.com/zachaa2/NBA-Regression-Analysis/blob/main/project/report/Final_Report.pdf) in the ```report``` folder for the full project analysis.
 
 ## Techniques used
 
