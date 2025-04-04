@@ -52,7 +52,7 @@ and parsing the data into a raw dataframe, as well as adhering to the site's ```
 
 This script contains the rest of the logic related to the data collection process. The script includes all the table specific logic needed to properly parse the scraped data into the necessary data tables. This script is not meant to be run on its own. 
 
-```fetch_bballref_data.py```
+```fetch_bballref_data.py --start_year <int> --end_year <int> --year <int> --table <str>```
 
 This script is the driver for the data collection process. The script will fetch and parse all the given tables from [basketball-reference](https://www.basketball-reference.com/), 
 and save them as csv's in the ```./data/{year}``` directory. The arguments are as follows:
@@ -69,7 +69,7 @@ and save them as csv's in the ```./data/{year}``` directory. The arguments are a
 
 The methods used in this project use three key features to represent each data point: Simple Rating System (SRS), Net Rating (NRtg), and Four Factors. The script below use the collected data to calculate and compite these metrics into csv files, so they can be used for the ML algorithms. 
 
-```srs.py```
+```srs.py --start_year <int> --end_year <int> --year <int>```
 
 This script is used to get the SRS metric for all teams for a given range of years. The SRS is also normalized (see the report for a full explanation). The usage is as follows:
 
@@ -79,7 +79,7 @@ This script is used to get the SRS metric for all teams for a given range of yea
 
 3. --year (int): Year to fetch data from (if no date range is needed). Leave blank if a range is needed
 
-```nrtg.py```
+```nrtg.py --start_year <int> --end_year <int> --year <int>```
 
 This script is used to get the Net Rating (NRtg) for all teams for a given range of years. The Net Rating is normalized (see the report for a full explanation). The usage is as follows: 
 
@@ -89,7 +89,7 @@ This script is used to get the Net Rating (NRtg) for all teams for a given range
 
 3. --year (int): Year to fetch data from (if no date range is needed). Leave blank if a range is needed
 
-```four_factors.py```
+```four_factors.py --start_year <int> --end_year <int> --year <int>```
 
 This script is used to the the Four Factor Score for all teams for a given range of years. The four factor score is a combination between the offensive four factors and defensive four factors. The score is then normalized. The calculation for the four factor score is less straightforward than the other two metrics - view the "Data Collection and Preprocessing" section in the report for the full explanation for all the metrics. The usage is as follows:
 
@@ -101,7 +101,7 @@ This script is used to the the Four Factor Score for all teams for a given range
 
 ### Data Assembly
 
-```assemble_data.py```
+```assemble_data.py --train_years <str> --test_years <str> --start_year <int> --end_year <int> --write```
 
 Once the data is fetched from [basketball-reference](https://www.basketball-reference.com/) and the features are created, we can now use this script to assemble the data in a format that can be used by our machine learning algorithms. This script is used to create the train/test split, as well as compiling a single large ```data.csv```. The split is done based off the years. All the output is saved into the ```./data``` directory. The script can also optionally save a yearly ```data.csv``` into each year's data folder (```./data/{year}```). 
 
@@ -123,13 +123,13 @@ Once the dataset has been finalized, we can use the following scripts to fit var
 
 When using the scripts, we can either use the train test datasets (```train.csv``` and ```test.csv```), or we can evaluate on a specific year by first fitting the model on the compiled ```data.csv```. 
 
-```linreg.py```
+```linreg.py --eval_year <int>```
 
 This script is used to fit a Linear Regression model on data and evaluate it. The implementation is Ordinary Least Squares (OLS) Linear Regression, provided by scikit-learn. The usage is as follows:
 
 1. --eval_year (int): Evaluate the trained model on a specific year. If None, uses the train/test split. 
 
-```rf.py``` 
+```rf.py --eval_year <int> --n_estomators <int> --max_depth <int>``` 
 
 This script is used to fit a Random Forest Regression model on data and evaluate it. The random forest regressor differs from the other two methods, as it is an example of ensemble learning, and non-parametric learning. The implementation is provided by scikit-learn. The usage is as follows:
 
@@ -139,7 +139,7 @@ This script is used to fit a Random Forest Regression model on data and evaluate
 
 3. --max_depth (int): Maximum depth of the trees
 
-```svr.py``` 
+```svr.py --eval_year <int> --kernel <str> --C <float> --epsilon <float>``` 
 
 This script is used to fit a Support Vector Regressor model on data and evaluate it. The SVR is a max-margin regression method which famously uses the kernel trick (using kernel functions) to perform non-linear classification/regression. The kernel function transforms the data into higher dimensional feature space. The implementation is provided by scikit-learn. For info on the available kernel functions, visit their [docs](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html). 
 
