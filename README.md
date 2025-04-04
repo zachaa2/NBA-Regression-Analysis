@@ -7,11 +7,11 @@ Final Project for ECSE-4840 Intro to Machine Learning
 For my final project, I created a regression analysis on NBA win percentages. The goal of this 
 project was to collect and curate my own basketball data from [basketball-reference](https://www.basketball-reference.com/) and use 
 that data to fit various regression models, evaluate their performance and use them to make way-
-too-early predictions for the final standings for this NBA season. This project will be using data 
+too-early predictions for the final standings for this ('24-'25) NBA season. This project will be using data 
 preprocessing techniques mentioned in class, like normalization. For this project, I will also be 
-using three different regression models based on methods discussed in class – the standards 
+using three different regression models based on methods discussed in class – the standard
 Ordinary Least Squares Regression, Support Vector Regression, and Random Forest Regression. 
-This project will also require proper evaluation, so we can interpret the results and understand 
+This project will also require proper evaluation techniques, so we can interpret the results and understand 
 the success and/or failures of the methods. All of these techniques have been introduced in class 
 and will be applied during this project.
 
